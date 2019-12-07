@@ -9,6 +9,8 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { DayLessonsComponent } from './calendar/day-lessons/day-lessons.component';
 import { LessonsComponent } from './lessons/lessons.component';
 import { TasksComponent } from './lessons/tasks/tasks.component';
+import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -17,13 +19,15 @@ import { TasksComponent } from './lessons/tasks/tasks.component';
     CalendarComponent,
     DayLessonsComponent,
     LessonsComponent,
-    TasksComponent
+    TasksComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ModalModule.forRoot(),  
-    NgbModule  
+    NgbModule,
+    HttpClientModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
