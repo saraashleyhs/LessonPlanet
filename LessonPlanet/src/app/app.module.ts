@@ -14,6 +14,13 @@ import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { FormsModule } from '@angular/forms'
+import { AuthService } from './services/authservice.service';
+import { AuthGuardService } from './services/auth-guard.service';
+import { LessonService } from './services/lesson.service';
+import { TaskService } from './services/task.service';
+import { LessonComponent } from './lessons/lesson/lesson.component';
+import { TaskComponent } from './lessons/tasks/task/task.component';
 
 @NgModule({
   declarations: [
@@ -23,21 +30,24 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     DayLessonsComponent,
     LessonsComponent,
     TasksComponent,
-    LoginComponent
+    LoginComponent,
+    LessonComponent,
+    TaskComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ModalModule.forRoot(),  
+    ModalModule.forRoot(),
     NgbModule,
     HttpClientModule,
     BrowserAnimationsModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
-    }) 
+    }),
+    FormsModule
   ],
-  providers: [],
+  providers: [AuthService, AuthGuardService, LessonService, TaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
