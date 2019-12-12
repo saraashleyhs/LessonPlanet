@@ -25,6 +25,7 @@
     "angular-calendar": "^0.28.2",
     "angular-draggable-droppable": "^4.3.8",
     "angular-resizable-element": "^3.2.6",
+    "bootstrap": "^4.4.1",
     "calendar-utils": "^0.7.0",
     "date-fns": "^2.8.1",
     "ng-bootstrap": "^1.6.3",

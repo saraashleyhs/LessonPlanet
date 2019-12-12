@@ -14,19 +14,19 @@ export class AuthService {
   public getToken(): string {
     return localStorage.getItem('token');
   }
-  
-  public requestLogin(email:string, password:string): Observable<any> {
-    return this.http.post<any>(this.API_URL + "/auth/login", 
+
+  public requestLogin(email: string, password: string): Observable<any> {
+    return this.http.post<any>(this.API_URL + '/auth/login',
     {email: email,
-    password: password
+     password: password
     })
     .pipe(
       map(result=>{
-        localStorage.setItem("token", result.token)
+        localStorage.setItem('token', result.token);
         return result;
       })
-        )
-  
+        );
+
   }
 
 }
