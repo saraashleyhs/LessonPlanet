@@ -61,7 +61,7 @@ import { CalendarView } from 'angular-calendar';
   `
 })
 export class CalendarHeaderComponent {
-  @Input() view: CalendarView | 'month' | 'week' | 'day';
+  @Input() view: CalendarView | 'month' | 'day';
 
   @Input() viewDate: Date;
 
