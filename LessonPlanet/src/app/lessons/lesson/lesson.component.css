@@ -1,0 +1,17 @@
+h1{
+  border: 2px solid black;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+h2.text-center{
+  border-top: 3px solid #000000;
+}
+
+p{
+  margin-left: 15%;
+}
+
+a:visited{
+  color: White;
+}
+

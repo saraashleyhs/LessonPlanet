@@ -26,6 +26,7 @@ import { UserService } from './services/user.service';
 import { UrlService } from './services/url.service';
 import { InterceptorService } from './services/interceptor.service';
 import { HomeComponent } from './home/home.component';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -53,10 +54,19 @@ import { HomeComponent } from './home/home.component';
       useFactory: adapterFactory
     }),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter : function tokenGetter(){
+          return localStorage.getItem('token');
+        },
+        whitelistedDomains: ['localhost:5001']
+      }
+    })
   ],
   providers:
-  [AuthService, AuthGuardService, LessonService, TaskService, UserService, UrlService, InterceptorService, FormsModule, NgbModule],
+  // tslint:disable-next-line: max-line-length
+  [AuthService, AuthGuardService, LessonService, TaskService, UserService, UrlService, InterceptorService, FormsModule, NgbModule, JwtHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

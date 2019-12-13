@@ -22,21 +22,21 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: '',
-      password: ''
+      Email: '',
+      Password: ''
     });
   }
 
   onSubmit(loginData) {
+
     if (this.loginForm.invalid) {
       return;
     }
-    this.auth.requestLogin(this.email, this.password)
+    this.auth.requestLogin(loginData.Email, loginData.Password)
     .pipe(first())
     .subscribe(
       data => {
-      this.router.navigateByUrl('/');
-      // Todo reroute to home component
+      this.router.navigateByUrl('**/home');
     },
     error => {
       console.error('Error', error);

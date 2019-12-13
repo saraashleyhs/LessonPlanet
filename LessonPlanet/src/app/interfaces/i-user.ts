@@ -2,8 +2,8 @@ import { ILesson } from './i-lesson';
 
 export interface IUser {
   id: number;
-  email: string;
-  password: string;
+  Email: string;
+  Password: string;
   token?: string;
   FirstName: string;
   LastName: string;

@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -16,12 +16,19 @@ export class AuthService {
   private API_URL = environment.API_URL;
   private currentUserSubject: BehaviorSubject<IUser>;
   private currentUser: Observable<IUser>;
-
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer',
+      'Access-Control-Allow-Credentials': 'true',
+      'Access-Control-Allow-Origin': 'true'
+    })
+  };
   constructor(private http: HttpClient,
               public jwtHelper: JwtHelperService,
               private URL: UrlService
               ) {
-                this.currentUserSubject = new BehaviorSubject<IUser>(JSON.parse(localStorage.getItem("currentUser")));
+                this.currentUserSubject = new BehaviorSubject<IUser>(JSON.parse(localStorage.getItem('currentUser')));
                 this.currentUser = this.currentUserSubject.asObservable();
                }
   public get currentUserValue(): IUser {
