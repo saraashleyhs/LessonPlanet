@@ -11,5 +11,6 @@ export class LessonComponent implements OnInit {
 
   ngOnInit() {
   }
+//subscribe to observables here
 
 }

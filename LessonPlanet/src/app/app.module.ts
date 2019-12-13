@@ -22,6 +22,10 @@ import { TaskService } from './services/task.service';
 import { LessonComponent } from './lessons/lesson/lesson.component';
 import { TaskComponent } from './lessons/tasks/task/task.component';
 import {  CalendarHeaderComponent } from './calendar/calendar.component.header';
+import { UserService } from './services/user.service';
+import { UrlService } from './services/url.service';
+import { InterceptorService } from './services/interceptor.service';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,8 @@ import {  CalendarHeaderComponent } from './calendar/calendar.component.header';
     LoginComponent,
     LessonComponent,
     TaskComponent,
-    CalendarHeaderComponent
+    CalendarHeaderComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,
@@ -47,9 +52,11 @@ import {  CalendarHeaderComponent } from './calendar/calendar.component.header';
       provide: DateAdapter,
       useFactory: adapterFactory
     }),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [AuthService, AuthGuardService, LessonService, TaskService],
+  providers:
+  [AuthService, AuthGuardService, LessonService, TaskService, UserService, UrlService, InterceptorService, FormsModule, NgbModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

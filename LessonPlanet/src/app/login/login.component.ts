@@ -15,7 +15,10 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   public email: string = '';
   password:string = '';
-  constructor(private auth: AuthService, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(
+    private auth: AuthService,
+    private formBuilder: FormBuilder,
+    private router: Router) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({

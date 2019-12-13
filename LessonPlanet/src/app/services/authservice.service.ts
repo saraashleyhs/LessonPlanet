@@ -1,15 +1,32 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Injectable, Inject } from '@angular/core';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { decode } from 'jwt-decode';
+import { UrlService } from './url.service'
+import { IUser } from '../interfaces/i-user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
   private API_URL = environment.API_URL;
-  constructor(private http: HttpClient) { }
+  private currentUserSubject: BehaviorSubject<IUser>;
+  private currentUser: Observable<IUser>;
+
+  constructor(private http: HttpClient,
+              public jwtHelper: JwtHelperService,
+              private URL: UrlService
+              ) {
+                this.currentUserSubject = new BehaviorSubject<IUser>(JSON.parse(localStorage.getItem("currentUser")));
+                this.currentUser = this.currentUserSubject.asObservable();
+               }
+  public get currentUserValue(): IUser {
+    return this.currentUserSubject.value;
+  }
 
   public getToken(): string {
     return localStorage.getItem('token');
@@ -23,10 +40,26 @@ export class AuthService {
     .pipe(
       map(result=>{
         localStorage.setItem('token', result.token);
+        console.log(result);
         return result;
       })
         );
-
   }
+public isAuthenicated(): boolean {
+  //get the token
+  const token = this.getToken();
+  // Check whether the token is expired and return
+  // true or false
+  return !this.jwtHelper.isTokenExpired(token);
+}
 
+logout() {
+  localStorage.removeItem('currentuser');
+  this.currentUserSubject.next(null);
+}
+
+decodeToken() {
+  const token = decode(this.getToken());
+  return token;
+}
 }
