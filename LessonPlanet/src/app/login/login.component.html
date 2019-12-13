@@ -1,21 +1,25 @@
-<div>
+<div class = "text-center">
+  <div class="form">
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
     <!-- EMAIL -->
-    <div>
+    <div class="form-Control text-center">
       <label for="email">
         Email
       </label>
+      <br>
       <input id="email" type="email" formControlName="Email" />
     </div>
 
     <!-- PASSWORD -->
-    <div>
+    <div class="form-Control text-center">
       <label for="password">
         Password
       </label>
+      <br>
       <input id="password" type="password" formControlName="Password" />
     </div>
 
-    <button routerLink='home' routerLinkActive="active" type="submit">Login</button>
+    <button class = "btn btn-primary btn-lg text-center" routerLink='home' routerLinkActive="active" type="submit">Login</button>
   </form>
+</div>
 </div>

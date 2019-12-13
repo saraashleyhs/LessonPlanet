@@ -1,0 +1,15 @@
+.form{
+  margin-left: 35%;
+  margin-right:35%;
+  padding: 2%;
+  border: 15px solid #1976d2;
+}
+btn-primary{
+  background-color: #1976d2;
+}
+.form-Control{
+  margin-bottom:15px;
+}
+label{
+  margin-right: 10px;
+}
